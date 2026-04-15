@@ -1,75 +1,87 @@
-import { router } from "expo-router";
+import { theme } from "@/styles/theme";
+import { usePathname, useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-type AppHeaderProps = {
-  title: string;
-  showBack?: boolean;
-};
+export default function AppHeader({ title }: { title: string }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
-export default function AppHeader({ title, showBack = true }: AppHeaderProps) {
+  const isHome = pathname === "/home";
+
+  const handleBack = () => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace("/");
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {/* Left Back Button */}
+      {/* Back */}
       <TouchableOpacity
         style={styles.leftContainer}
-        onPress={() => router.back()}
-        disabled={!showBack}
+        onPress={handleBack}
+        disabled={isHome}
       >
-        {showBack ? (
+        {!isHome ? (
           <Text style={styles.backArrow}>←</Text>
         ) : (
           <View style={styles.placeholder} />
         )}
       </TouchableOpacity>
 
-      {/* Center Title */}
+      {/* Title */}
       <Text style={styles.title}>{title}</Text>
 
-      {/* Right Avatar */}
+      {/* Avatar */}
       <Image
-        source={{
-          uri: "https://i.pravatar.cc/100?img=12",
-        }}
+        source={{ uri: "https://i.pravatar.cc/100?img=12" }}
         style={styles.avatar}
       />
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     height: 70,
-    backgroundColor: "#fff",
+    backgroundColor: theme.colors.background,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
+    paddingHorizontal: theme.spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: theme.colors.border,
   },
+
   leftContainer: {
     width: 40,
     justifyContent: "center",
+    alignItems: "flex-start",
   },
+
   backArrow: {
     fontSize: 28,
     fontWeight: "700",
-    color: "#111",
+    color: theme.colors.text,
   },
+
   placeholder: {
     width: 28,
   },
+
   title: {
     flex: 1,
     textAlign: "left",
     fontSize: 20,
     fontWeight: "700",
-    color: "#111",
+    color: theme.colors.text,
   },
+
   avatar: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: theme.radius.lg || 20,
   },
 });

@@ -1,4 +1,4 @@
-import AppHeader from "@/components/ui/AppHeader";
+import AppHeader from "@/components/common/AppHeader";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {

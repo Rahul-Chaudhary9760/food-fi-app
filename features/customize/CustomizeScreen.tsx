@@ -1,5 +1,4 @@
 import { useCartStore } from "@/store/cart.store";
-import { router } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import MealSelector from "./component/MealSelector";
@@ -42,8 +41,6 @@ export default function CustomizeScreen() {
       quantity: qty,
       totalPrice: qty * 69,
     });
-
-    router.push("/cart");
   };
 
   return (

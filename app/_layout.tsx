@@ -1,11 +1,12 @@
-// import { Drawer } from "expo-router/drawer";
+import { Slot } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-// export default function Layout() {
-//   return (
-//     <Drawer>
-//       <Drawer.Screen name="index" options={{ title: "Home" }} />
-//       <Drawer.Screen name="feature" options={{ title: "Features" }} />
-//       <Drawer.Screen name="how-it-works" options={{ title: "How It Works" }} />
-//     </Drawer>
-//   );
-// }
+export default function RootLayout() {
+  return (
+    <SafeAreaProvider>
+      <StatusBar style="dark" />
+      <Slot />
+    </SafeAreaProvider>
+  );
+}

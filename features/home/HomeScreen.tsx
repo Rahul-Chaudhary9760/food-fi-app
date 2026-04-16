@@ -1,5 +1,6 @@
+import { router } from "expo-router";
 import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import FeatureSection from "./component/FeatureSection";
 import HeroCarousel from "./component/HeroCarousel";
 import HowItWorks from "./component/HowItWorks";
@@ -17,6 +18,17 @@ export default function HomeScreen() {
         <Text style={styles.subtitle}>
           Healthy, affordable and customizable meals.
         </Text>
+        <TouchableOpacity onPress={() => router.push("/login")}>
+          <Text>Login</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => router.push("/register")}>
+          <Text>Signup</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => router.push("/otp")}>
+          <Text>OTP</Text>
+        </TouchableOpacity>
         <FeatureSection />
         <HowItWorks />
         <PopularMeals />

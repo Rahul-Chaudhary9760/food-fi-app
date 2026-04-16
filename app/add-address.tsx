@@ -1,4 +1,4 @@
-import AppHeader from "@/components/ui/AppHeader";
+import AppHeader from "@/components/common/AppHeader";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
